@@ -40,9 +40,12 @@
       <file leaf-file-name="Game.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/company/domain/Game.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="229">
-              <caret line="48" column="0" lean-forward="true" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="314">
+              <caret line="62" column="8" lean-forward="true" selection-start-line="62" selection-start-column="8" selection-end-line="62" selection-end-column="8" />
+              <folding>
+                <element signature="e#1911#1912#0" expanded="true" />
+                <element signature="e#1962#1963#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -879,9 +882,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/domain/Game.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="229">
-          <caret line="48" column="0" lean-forward="true" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="314">
+          <caret line="62" column="8" lean-forward="true" selection-start-line="62" selection-start-column="8" selection-end-line="62" selection-end-column="8" />
+          <folding>
+            <element signature="e#1911#1912#0" expanded="true" />
+            <element signature="e#1962#1963#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
