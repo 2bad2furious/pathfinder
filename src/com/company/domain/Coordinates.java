@@ -1,7 +1,7 @@
 package com.company.domain;
 
 /**
- * Created by user on 23.04.2017.
+ * Created by user on 27.05.2017.
  */
 public class Coordinates {
     private final int x;
@@ -18,5 +18,14 @@ public class Coordinates {
 
     public int getY() {
         return y;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) return true;
+
+        if (!(obj instanceof Coordinates)) return false;
+        Coordinates nobj = (Coordinates) obj;
+        return nobj.getX() == getX() && nobj.getY() == getY();
     }
 }
