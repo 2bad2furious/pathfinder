@@ -1,6 +1,8 @@
 package com.company.domain;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Optional;
 
 /**
  * Created by user on 27.05.2017.
@@ -59,8 +61,70 @@ public class Game {
                 nextMove.getY() >= 0 && nextMove.getY() < field[nextMove.getX()].length;
     }
 
-    private Coordinates makeNextAIMove(GameLevel currentLevel, Coordinates nextMove) {
-        
+    private Coordinates makeNextAIMove(GameLevel currentLevel, Coordinates nextMove) throws Exception {
+        Optional<Coordinates> next = getNextMove(currentLevel.getField(), currentLevel.getEnemy());
+        if (next.isPresent()) return next.get();
+        else throw new Exception("No path found");
     }
 
+    //This was a bad idea, i know
+    private Optional<Coordinates> getNextMove(BoardField[][] field, Coordinates position) {
+        int[][] visitedCounts = new int[field.length][field[0].length];
+
+        Coordinates[] available = getAvailableMoves(field, position);
+
+        int best = field.length * field[0].length;
+        Coordinates bestC = null;
+
+        for (Coordinates anAvailable : available) {
+            int a = getCount(field, anAvailable, position, currentLevel.getTarget(), visitedCounts);
+            if (a < best) {
+                bestC = anAvailable;
+                best = a;
+            }
+        }
+
+        return Optional.of(bestC);
+    }
+
+    //stejnej kod jako nahoře :(
+    private int getCount(BoardField[][] fields, Coordinates position, Coordinates previous, Coordinates target, int[][] visitedCounts) {
+        int visited = visitedCounts[position.getX()][position.getY()];
+        if (visited != 0) return visited;
+
+        int best = Integer.MAX_VALUE;
+
+        if (position.equals(target)) best = 0;
+
+        if (best != 0) {
+            Coordinates[] available = getAvailableMoves(fields, position);
+
+            for (int i = 0; i < available.length; i++) {
+                if (available[i].equals(previous)) continue;
+
+                int count = getCount(fields, available[i], position, target, visitedCounts);
+                if (count < best) best = count;
+            }
+        }
+        visitedCounts[position.getX()][position.getY()] = best;
+
+        return 1 + best;
+    }
+
+
+    private Coordinates[] getAvailableMoves(BoardField[][] field, Coordinates position) {
+        ArrayList<Coordinates> available = new ArrayList<>();
+
+        addIfItIsOK(field, new Coordinates(position.getX() + 1, position.getY()), available);
+        addIfItIsOK(field, new Coordinates(position.getX() - 1, position.getY()), available);
+        addIfItIsOK(field, new Coordinates(position.getX(), position.getY() + 1), available);
+        addIfItIsOK(field, new Coordinates(position.getX(), position.getY() - 1), available);
+
+        return (Coordinates[]) available.toArray();
+    }
+
+    private void addIfItIsOK(BoardField[][] field, Coordinates position, ArrayList<Coordinates> list) {
+        if (isInsideOfField(position, field) && field[position.getX()][position.getY()] != BoardField.BLOCKED)
+            list.add(position);
+    }
 }
