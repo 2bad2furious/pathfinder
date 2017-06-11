@@ -3,6 +3,7 @@ package com.company;
 import com.company.domain.BoardField;
 import com.company.domain.Coordinates;
 import com.company.domain.GameLevel;
+import com.company.domain.Winner;
 import com.sun.javaws.exceptions.InvalidArgumentException;
 
 import java.util.Scanner;
@@ -15,6 +16,8 @@ class UI {
 
     static void printLevel(GameLevel level) {
         BoardField[][] field = level.getField();
+
+        int a = field.length;
 
         for (int i = 0; i < field.length; i++) {
             for (int j = 0; j < field[i].length; j++) {
@@ -67,22 +70,32 @@ class UI {
 
     public static Coordinates getNextMove(GameLevel level) {
         int x = 0;
-        while(true){
+        while (true) {
             x = scanner.nextInt();
             if (x >= level.getField().length || x < 0) {
                 System.out.println("Number must be between 0 and " + level.getField().length);
-            }else{
+            } else {
                 break;
             }
         }
         int y = 0;
-        while (true){
+        while (true) {
             y = scanner.nextInt();
             if (y >= level.getField()[x].length || y < 0) {
                 System.out.println("Number must be between 0 and " + level.getField()[x].length);
-            }else{
+            } else {
                 return new Coordinates(x, y);
             }
         }
+    }
+
+    public static void wrongMove() {
+        System.out.println("Wrong move, please make a move again");
+    }
+
+    public static void printWinOrLose(Winner winner) throws Exception {
+        if(winner == null) throw new Exception("there is no winner in living");
+        if(winner == Winner.AI) System.out.println("You lost");
+        else if(winner == Winner.PLAYER) System.out.println("You won");
     }
 }

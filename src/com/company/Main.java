@@ -16,9 +16,15 @@ public class Main {
 
         GameLevel level = game.selectLevel(levelId);
 
-        while(!game.isFinished()){
+        while (!game.isFinished()) {
             UI.printLevel(level);
-            level = game.moveTo(UI.getNextMove(level));
+            try {
+                level = game.moveTo(UI.getNextMove(level));
+            } catch (Throwable ex) {
+                UI.wrongMove();
+            }
         }
+        UI.printLevel(level);
+        UI.printWinOrLose(game.getWinner());
     }
 }

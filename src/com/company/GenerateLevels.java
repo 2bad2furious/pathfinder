@@ -29,8 +29,8 @@ public class GenerateLevels {
             int size2 = getRandomSize(rn, 10, 30);
 
             BoardField[][] field = generateRandomField(rn, size1, size2, 6);
-            arr[i] = new GameLevel(field, getTopLeft(field), getBottomRight(field));
-            int a = 1+1;
+            arr[i] = new GameLevel(field, getTopLeft(field), getBottomRight(field), getBottomRight(field));
+            int a = 1 + 1;
         }
         List<String> lines = Arrays.asList(gson.toJson(arr));
         Path file = Paths.get("levels.json");

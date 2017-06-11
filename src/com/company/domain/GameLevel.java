@@ -9,11 +9,11 @@ public class GameLevel {
     private Coordinates enemy;
     private Coordinates target;
 
-    public GameLevel(BoardField[][] field, Coordinates player, Coordinates enemy) {
+    public GameLevel(BoardField[][] field, Coordinates player, Coordinates enemy, Coordinates target) {
         this.field = field;
         this.player = player;
         this.enemy = enemy;
-        this.target = enemy;
+        this.target = target;
     }
 
     public Coordinates getPlayer() {
