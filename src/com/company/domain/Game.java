@@ -31,6 +31,8 @@ public class Game {
         if (levelId < 0 || levelId >= levels.length)
             throw new IllegalArgumentException("levelid must be a valid number");
 
+        winner = null;
+
         return this.currentLevel = levels[levelId];
     }
 
