@@ -1,6 +1,7 @@
 package com.company;
 
 import com.company.Loader.LevelLoader;
+import com.company.UI.UI;
 import com.company.domain.Game;
 import com.company.domain.GameLevel;
 import com.google.gson.Gson;
@@ -12,9 +13,9 @@ public class Main {
 
         Game game = new Game(new LevelLoader(new Gson()));
 
-        int levelId = UI.listAndChooseGameLevel(game.getLevels());
+        GameLevel level = UI.listAndChooseGameLevel(game.getLevels());
 
-        GameLevel level = game.selectLevel(levelId);
+        game.selectLevel(level);
 
         while (!game.isFinished()) {
             UI.printLevel(level);

@@ -48,6 +48,7 @@ public class BadAI implements AI {
 
         Coordinates[] availables = getSurroundings(enemy);
         for (Coordinates available : availables) {
+            if (field[available.getX()][available.getY()] == BoardField.BLOCKED) continue;
             int path = paths[available.getX()][available.getY()];
             if (path < best) {
                 best = path;

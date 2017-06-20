@@ -28,4 +28,8 @@ public class Coordinates {
         Coordinates nobj = (Coordinates) obj;
         return nobj.getX() == getX() && nobj.getY() == getY();
     }
+
+    public boolean isSame(int x, int y) {
+        return this.getX() == x && y == this.getY();
+    }
 }
